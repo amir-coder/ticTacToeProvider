@@ -8,6 +8,10 @@ void main() => runApp(MaterialApp(
 
 //variables
 
+  String xValue = 'assets/X_gradient';
+  String oValue = 'assets/O_gradient';
+
+
 class TecTacToe extends StatefulWidget {
   @override
   _TecTacToeState createState() => _TecTacToeState();
@@ -45,7 +49,7 @@ class _GameState extends State<Game> {
 class Boarde extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final tableOfCases = Provider.of<TableOfCases>(context);
+
     return Table(
       border: TableBorder(
         verticalInside: BorderSide(color: Colors.black),
@@ -55,43 +59,34 @@ class Boarde extends StatelessWidget {
         TableRow(children: [
           Square(
             index: 1,
-            stateProvider: tableOfCases,
           ),
           Square(
             index: 2,
-            stateProvider: tableOfCases,
           ),
           Square(
             index: 3,
-            stateProvider: tableOfCases,
           ),
         ]),
         TableRow(children: [
           Square(
             index: 4,
-            stateProvider: tableOfCases,
           ),
           Square(
             index: 5,
-            stateProvider: tableOfCases,
           ),
           Square(
             index: 6,
-            stateProvider: tableOfCases,
           ),
         ]),
         TableRow(children: [
           Square(
             index: 7,
-            stateProvider: tableOfCases,
           ),
           Square(
             index: 8,
-            stateProvider: tableOfCases,
           ),
           Square(
             index: 9,
-            stateProvider: tableOfCases,
           ),
         ]),
       ],
@@ -100,21 +95,19 @@ class Boarde extends StatelessWidget {
 }
 
 class Square extends StatelessWidget {
-  Square({this.index, this.stateProvider});
+  Square({this.index,});
   final index;
-  final TableOfCases stateProvider;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
         flex: 1,
         child: Consumer<TableOfCases>(
           builder: (context, tableOfCases, child) => GestureDetector(
-            onTap: () => stateProvider.onChangedHandler(index),
+            onTap: () {},
             child: Container(
                 child: Center(
-              child: stateProvider.myValue(this.index) == null
-                  ? Container()
-                  : Image.asset(stateProvider.myValue(index)),
+              child: Image.asset(xValue),
             )),
           ),
         ));
