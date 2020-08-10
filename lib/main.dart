@@ -8,9 +8,8 @@ void main() => runApp(MaterialApp(
 
 //variables
 
-  String xValue = 'assets/X_gradient';
-  String oValue = 'assets/O_gradient';
-
+String xValue = 'assets/X_gradient.png';
+String oValue = 'assets/O_gradient.png';
 
 class TecTacToe extends StatefulWidget {
   @override
@@ -20,24 +19,16 @@ class TecTacToe extends StatefulWidget {
 class _TecTacToeState extends State<TecTacToe> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<TableOfCases>(
-      create: (context) => TableOfCases(),
-      child: Scaffold(
-          body: Center(
-        child: Game(),
-      )),
-    );
+    return Scaffold(
+        body: Center(
+      child: Game(),
+    ));
   }
 }
 
 //Game widget
 
-class Game extends StatefulWidget {
-  @override
-  _GameState createState() => _GameState();
-}
-
-class _GameState extends State<Game> {
+class Game extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -49,7 +40,6 @@ class _GameState extends State<Game> {
 class Boarde extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Table(
       border: TableBorder(
         verticalInside: BorderSide(color: Colors.black),
@@ -95,21 +85,20 @@ class Boarde extends StatelessWidget {
 }
 
 class Square extends StatelessWidget {
-  Square({this.index,});
+  Square({
+    this.index,
+  });
   final index;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        flex: 1,
-        child: Consumer<TableOfCases>(
-          builder: (context, tableOfCases, child) => GestureDetector(
-            onTap: () {},
-            child: Container(
-                child: Center(
-              child: Image.asset(xValue),
-            )),
-          ),
-        ));
+      flex: 1,
+      child: Container(
+        child: Center(
+          child: Image.asset(xValue),
+        ),
+      ),
+    );
   }
 }
